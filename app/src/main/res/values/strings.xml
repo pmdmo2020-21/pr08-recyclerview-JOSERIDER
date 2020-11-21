@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Users</string>
+    <string name="edit_user_title">User profile</string>
+    <string name="add_user_title">Add user</string>
+
+    <string name="user_lblName">Name</string>
+    <string name="user_txtName">(name)</string>
+    <string name="user_lblEmail">email</string>
+    <string name="user_imgPhoto">Avatar</string>
+    <string name="user_lblPhonenumber">Phone number</string>
+    <string name="user_lblAddress">Address</string>
+    <string name="user_txtAddress">(address)</string>
+    <string name="user_txtPhonenumber">(phone)</string>
+    <string name="user_txtEmail">(email)</string>
+    <string name="user_lblWeb">Web</string>
+    <string name="user_txtWeb">(url)</string>
+    <string name="user_imgEmail">Email</string>
+    <string name="user_imgWeb">Web</string>
+    <string name="user_imgAddress">Address</string>
+    <string name="user_imgPhonenumber">Phonenumber</string>
+    <string name="user_save">Save</string>
+    <string name="user_invalid_data">Invalid data</string>
+
+    <string name="users_title">Users</string>
+    <string name="users_item_btnEdit">Edit</string>
+    <string name="users_item_btnDelete">Delete</string>
+    <string name="users_item_imgPhoto">Photo</string>
+    <string name="users_lblEmptyView">No users yet</string>
+    <string name="users_add">Add user</string>
+
+</resources>

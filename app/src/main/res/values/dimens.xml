@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_half">4dp</dimen>
+    <dimen name="margin">8dp</dimen>
+    <dimen name="margin_2x">16dp</dimen>
+
+    <dimen name="users_item_imgPhoto_width">64dp</dimen>
+    <dimen name="users_item_lblName_textSize">16sp</dimen>
+    <dimen name="users_item_cardElevation">4dp</dimen>
+
+    <dimen name="user_button_min_width">32dp</dimen>
+
+</resources>
