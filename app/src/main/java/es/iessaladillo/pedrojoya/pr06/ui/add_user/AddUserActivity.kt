@@ -16,6 +16,7 @@ import es.iessaladillo.pedrojoya.pr06.databinding.UserActivityBinding
 import es.iessaladillo.pedrojoya.pr06.utils.hideSoftKeyboard
 import es.iessaladillo.pedrojoya.pr06.utils.loadUrl
 import es.iessaladillo.pedrojoya.pr06.utils.observeEvent
+import es.iessaladillo.pedrojoya.pr06.utils.*
 
 class AddUserActivity : AppCompatActivity() {
 
@@ -75,7 +76,7 @@ class AddUserActivity : AppCompatActivity() {
         binding.userEdtWeb.setOnEditorActionListener { _, _, _ ->
             onSave()
             true
-         }
+        }
     }
 
     private fun observeEvents() {
@@ -105,24 +106,10 @@ class AddUserActivity : AppCompatActivity() {
 
 
     private fun isValidForm(): Boolean =
-           isValidName() && isValidEmail() && isValidPhoneNumber()
+            isValidName(binding.userEdtName.text) &&
+                    isValidEmail(binding.userEdtEmail.text) &&
+                    isValidPhoneNumber(binding.userEdtPhoneNumber.text)
 
-
-    private fun isValidPhoneNumber(): Boolean {
-        val phone = binding.userEdtPhoneNumber.text.toString()
-        return phone.startsWith("6") && phone.length == 9
-    }
-
-    private fun isValidEmail(): Boolean {
-        val email = binding.userEdtEmail.text.toString()
-        val regex = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})".toRegex()
-        return regex matches email
-    }
-
-    private fun isValidName(): Boolean {
-        val name = binding.userEdtName.text.toString()
-        return name.isNotBlank() || name.isNotEmpty()
-    }
 
     private fun changePhoto() = viewModel.changePhoto()
 

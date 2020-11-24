@@ -1,7 +1,5 @@
 package es.iessaladillo.pedrojoya.pr06.data
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import es.iessaladillo.pedrojoya.pr06.data.model.User
@@ -35,15 +33,15 @@ object Database : DataSource {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun updateUser(user: User) {
-        userList.removeAt(userList.indexOf(user))
+        //Remove the oldest user
+        userList.remove(userList.find { it.id == user.id })
+        //Add new user
         userList.add(user)
         updateLiveData()
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun deleteUser(user: User) {
         userList.remove(user)
         updateLiveData()

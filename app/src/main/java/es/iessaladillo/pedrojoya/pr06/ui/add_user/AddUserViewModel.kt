@@ -1,17 +1,13 @@
 package es.iessaladillo.pedrojoya.pr06.ui.add_user
 
-import android.content.Context
-import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.google.android.material.snackbar.Snackbar
 import es.iessaladillo.pedrojoya.pr06.data.DataSource
 import es.iessaladillo.pedrojoya.pr06.data.model.User
 import es.iessaladillo.pedrojoya.pr06.utils.Event
 import es.iessaladillo.pedrojoya.pr06.utils.random
-import kotlin.random.Random
 
 // TODO:
 //  Crear la clase EditUserViewModel. Ten en cuenta que la url de la photo
@@ -21,7 +17,7 @@ private const val STATE_PHOTO_URL = "STATE_PHOTO_URL"
 
 class AddUserViewModel(
         private val repository: DataSource,
-        private val savedStateHandle: SavedStateHandle
+        savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
 
@@ -30,6 +26,7 @@ class AddUserViewModel(
 
     val photoUrl: LiveData<String>
         get() = _photoUrl
+
 
 
     private val _onSaveUser: MutableLiveData<Event<Boolean>> = MutableLiveData()

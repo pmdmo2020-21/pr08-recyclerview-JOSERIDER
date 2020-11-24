@@ -38,7 +38,7 @@
         android:layout_marginEnd="@dimen/margin_2x"
         android:hint="@string/user_txtName"
         android:importantForAutofill="no"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/user_lblName"
         app:layout_constraintTop_toBottomOf="@+id/user_lblName">
@@ -171,11 +171,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/user_txtWeb"
+        android:imeOptions="actionDone"
         android:importantForAutofill="no"
         android:inputType="textUri"
         app:layout_constraintEnd_toStartOf="@+id/user_imgWeb"
         app:layout_constraintHorizontal_bias="0.5"
-        android:imeOptions="actionDone"
         app:layout_constraintStart_toStartOf="@+id/user_lblWeb"
         app:layout_constraintTop_toBottomOf="@+id/user_lblWeb" />
 

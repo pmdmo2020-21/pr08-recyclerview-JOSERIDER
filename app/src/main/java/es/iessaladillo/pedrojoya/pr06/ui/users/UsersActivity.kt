@@ -1,11 +1,8 @@
 package es.iessaladillo.pedrojoya.pr06.ui.users
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -15,12 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import es.iessaladillo.pedrojoya.pr06.R
 import es.iessaladillo.pedrojoya.pr06.data.Database
 import es.iessaladillo.pedrojoya.pr06.data.model.User
-import es.iessaladillo.pedrojoya.pr06.databinding.UserActivityBinding
 import es.iessaladillo.pedrojoya.pr06.databinding.UsersActivityBinding
 import es.iessaladillo.pedrojoya.pr06.ui.add_user.AddUserActivity
 import es.iessaladillo.pedrojoya.pr06.ui.edit_user.EditUserActivity
 import es.iessaladillo.pedrojoya.pr06.utils.observeEvent
-import es.iessaladillo.pedrojoya.pr06.utils.requireParcelableExtra
 
 class UsersActivity : AppCompatActivity() {
 
@@ -73,6 +68,11 @@ class UsersActivity : AppCompatActivity() {
 
     private fun setupViews() {
         setupUsersRcl()
+        setListeners()
+    }
+
+    private fun setListeners() {
+        binding.usersLblEmptyView.setOnClickListener { onAddUser() }
     }
 
     private fun setupUsersRcl() {
