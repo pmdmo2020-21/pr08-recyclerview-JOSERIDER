@@ -1,8 +1,11 @@
 package es.iessaladillo.pedrojoya.pr06.ui.users
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -12,7 +15,12 @@ import androidx.recyclerview.widget.RecyclerView
 import es.iessaladillo.pedrojoya.pr06.R
 import es.iessaladillo.pedrojoya.pr06.data.Database
 import es.iessaladillo.pedrojoya.pr06.data.model.User
+import es.iessaladillo.pedrojoya.pr06.databinding.UserActivityBinding
 import es.iessaladillo.pedrojoya.pr06.databinding.UsersActivityBinding
+import es.iessaladillo.pedrojoya.pr06.ui.add_user.AddUserActivity
+import es.iessaladillo.pedrojoya.pr06.ui.edit_user.EditUserActivity
+import es.iessaladillo.pedrojoya.pr06.utils.observeEvent
+import es.iessaladillo.pedrojoya.pr06.utils.requireParcelableExtra
 
 class UsersActivity : AppCompatActivity() {
 
@@ -24,6 +32,8 @@ class UsersActivity : AppCompatActivity() {
     private val viewModel: UsersActivityViewModel by viewModels {
         UsersActivityViewModelFactory(Database)
     }
+
+
     private val usersAdapter: UsersAdapter by lazy {
         UsersAdapter().apply {
             onEditUser = { pos -> editUser(currentList[pos]) }
@@ -34,9 +44,11 @@ class UsersActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        observeViewModel()
+        observeLiveData()
+        observeEvents()
         setupViews()
     }
+
 
     // NO TOCAR: Estos métodos gestionan el menú y su gestión
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -53,10 +65,11 @@ class UsersActivity : AppCompatActivity() {
     }
     // FIN NO TOCAR
 
-    private fun observeViewModel() {
+    private fun observeLiveData() {
         observeUserList()
         observeEmptyView()
     }
+
 
     private fun setupViews() {
         setupUsersRcl()
@@ -65,7 +78,7 @@ class UsersActivity : AppCompatActivity() {
     private fun setupUsersRcl() {
         binding.usersRcl.run {
             layoutManager = GridLayoutManager(this@UsersActivity,
-                    resources.getInteger(R.integer.users_grid_columns), RecyclerView.HORIZONTAL, false)
+                    resources.getInteger(R.integer.users_grid_columns), RecyclerView.VERTICAL, false)
 
             itemAnimator = DefaultItemAnimator()
             adapter = usersAdapter
@@ -73,6 +86,14 @@ class UsersActivity : AppCompatActivity() {
     }
 
 
+    private fun editUser(user: User) = viewModel.updateUser(user)
+
+    private fun deleteUser(user: User) = viewModel.deleteUser(user)
+
+    private fun onAddUser() = viewModel.navigateToAddUser()
+
+
+    //---- Observers ---
     private fun observeUserList() {
         viewModel.userList.observe(this, Observer {
             usersAdapter.submitList(it)
@@ -85,13 +106,13 @@ class UsersActivity : AppCompatActivity() {
         })
     }
 
-    private fun editUser(user: User) = viewModel.updateUser(user)
 
-
-    private fun deleteUser(user: User) = viewModel.deleteUser(user)
-
-    fun onAddUser() {
-        // TODO: Acciones a realizar al querer agregar un usuario.
+    private fun observeEvents() {
+        viewModel.onNavigateAddUser.observeEvent(this) {
+            startActivity(AddUserActivity.newIntent(this))
+        }
+        viewModel.onNavigateEditUser.observeEvent(this) { user ->
+            startActivity(EditUserActivity.newIntent(this, user))
+        }
     }
-
 }

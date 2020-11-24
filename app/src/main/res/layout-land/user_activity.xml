@@ -1,9 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/clRoot"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <!-- Los iconos tienen una anchura y altura de @dimen/user_button_min_width -->
 
+
+    <ImageView
+        android:id="@+id/user_img"
+        android:layout_width="@dimen/user_imgWidth_size"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/user_lblName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_2x"
+        android:layout_marginTop="@dimen/margin_2x"
+        android:text="@string/user_lblName"
+        app:layout_constraintStart_toEndOf="@+id/user_img"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/user_edtName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_half"
+        android:layout_marginEnd="@dimen/margin_2x"
+        android:hint="@string/user_txtName"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/user_lblName"
+        app:layout_constraintTop_toBottomOf="@+id/user_lblName">
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/user_lblEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
+        android:text="@string/user_lblEmail"
+        app:layout_constraintStart_toStartOf="@+id/user_edtName"
+        app:layout_constraintTop_toBottomOf="@+id/user_edtName" />
+
+    <EditText
+        android:id="@+id/user_edtEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_half"
+        android:hint="@string/user_txtEmail"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toStartOf="@+id/user_imgEmail"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toStartOf="@+id/user_lblEmail"
+        app:layout_constraintTop_toBottomOf="@+id/user_lblEmail" />
+
+    <ImageView
+        android:id="@+id/user_imgEmail"
+        android:layout_width="@dimen/user_button_min_width"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/margin"
+        android:src="@drawable/ic_email_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_edtEmail"
+        app:layout_constraintEnd_toStartOf="@+id/user_edtPhoneNumber"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/user_edtEmail"
+        app:layout_constraintTop_toTopOf="@+id/user_edtEmail"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/user_lblPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_half"
+        android:text="@string/user_lblPhonenumber"
+        app:layout_constraintBottom_toTopOf="@+id/user_edtPhoneNumber"
+        app:layout_constraintStart_toStartOf="@+id/user_edtPhoneNumber" />
+
+    <EditText
+        android:id="@+id/user_edtPhoneNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/user_txtPhonenumber"
+        android:inputType="phone"
+        app:layout_constraintBottom_toBottomOf="@+id/user_imgEmail"
+        app:layout_constraintEnd_toStartOf="@+id/user_imgPhoneNumber"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/user_imgEmail" />
+
+    <ImageView
+        android:id="@+id/user_imgPhoneNumber"
+        android:layout_width="@dimen/user_button_min_width"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/margin"
+        android:src="@drawable/ic_call_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_edtPhoneNumber"
+        app:layout_constraintEnd_toEndOf="@+id/user_edtName"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/user_edtPhoneNumber"
+        app:layout_constraintTop_toTopOf="@+id/user_edtPhoneNumber"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/user_lblAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
+        android:text="@string/user_lblAddress"
+        app:layout_constraintStart_toStartOf="@+id/user_edtEmail"
+        app:layout_constraintTop_toBottomOf="@+id/user_edtEmail" />
+
+
+    <EditText
+        android:id="@+id/user_edtAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_half"
+        android:hint="@string/user_txtAddress"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintEnd_toStartOf="@+id/user_imgAddress"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/user_lblAddress"
+        app:layout_constraintTop_toBottomOf="@+id/user_lblAddress" />
+
+    <ImageView
+        android:id="@+id/user_imgAddress"
+        android:layout_width="@dimen/user_button_min_width"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin"
+        android:src="@drawable/ic_map_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_edtAddress"
+        app:layout_constraintEnd_toEndOf="@+id/user_imgPhoneNumber"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/user_edtAddress"
+        app:layout_constraintTop_toTopOf="@+id/user_edtAddress"
+        tools:ignore="ContentDescription" />
+
+
+    <TextView
+        android:id="@+id/user_lblWeb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
+        android:text="@string/user_lblWeb"
+        app:layout_constraintStart_toStartOf="@+id/user_edtAddress"
+        app:layout_constraintTop_toBottomOf="@+id/user_edtAddress" />
+
+
+    <EditText
+        android:id="@+id/user_edtWeb"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/user_txtWeb"
+        android:importantForAutofill="no"
+        android:inputType="textUri"
+        app:layout_constraintEnd_toStartOf="@+id/user_imgWeb"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:imeOptions="actionDone"
+        app:layout_constraintStart_toStartOf="@+id/user_lblWeb"
+        app:layout_constraintTop_toBottomOf="@+id/user_lblWeb" />
+
+    <ImageView
+        android:id="@+id/user_imgWeb"
+        android:layout_width="@dimen/user_button_min_width"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin"
+        android:src="@drawable/ic_web_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_edtWeb"
+        app:layout_constraintEnd_toEndOf="@+id/user_imgAddress"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/user_edtWeb"
+        app:layout_constraintTop_toBottomOf="@+id/user_lblWeb" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+

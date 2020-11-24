@@ -58,7 +58,7 @@
             android:layout_width="@dimen/users_item_imgPhoto_width"
             android:layout_height="0dp"
             android:contentDescription="@string/users_item_imgDescription"
-            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintBottom_toBottomOf="@+id/users_item_lblPhoneNumber"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />

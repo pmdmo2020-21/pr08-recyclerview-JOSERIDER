@@ -19,13 +19,11 @@ import es.iessaladillo.pedrojoya.pr06.data.model.User
 
 object Database : DataSource {
 
-    private val userList: MutableList<User> = mutableListOf(
-            User(2,"Jose","Baldomero","55454353","","","")
-    )
+    private val userList: MutableList<User> = mutableListOf()
 
     private val _userList: MutableLiveData<List<User>> = MutableLiveData()
 
-    private val userId: Long = 1
+    private var userId: Long = 1
 
     override fun getAllUsersOrderedByName(): LiveData<List<User>> = _userList
 
@@ -33,21 +31,22 @@ object Database : DataSource {
         val newUser = user.copy(id = userId)
         if (userList.add(newUser)) {
             updateLiveData()
-            userId.inc()
+            userId +=1
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun updateUser(user: User) {
-        if(userList.removeIf { it.id == user.id }){
-            userList.add(user)
-            updateLiveData()
-        }
+        userList.removeAt(userList.indexOf(user))
+        userList.add(user)
+        updateLiveData()
+
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun deleteUser(user: User) {
-        if (userList.removeIf { it.id == user.id }) updateLiveData()
+        userList.remove(user)
+        updateLiveData()
     }
 
 
