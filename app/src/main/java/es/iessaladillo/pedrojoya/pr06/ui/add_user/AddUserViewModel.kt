@@ -1,13 +1,14 @@
 package es.iessaladillo.pedrojoya.pr06.ui.add_user
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import es.iessaladillo.pedrojoya.pr06.R
 import es.iessaladillo.pedrojoya.pr06.data.DataSource
 import es.iessaladillo.pedrojoya.pr06.data.model.User
-import es.iessaladillo.pedrojoya.pr06.utils.Event
-import es.iessaladillo.pedrojoya.pr06.utils.random
+import es.iessaladillo.pedrojoya.pr06.utils.*
 
 // TODO:
 //  Crear la clase EditUserViewModel. Ten en cuenta que la url de la photo
@@ -16,6 +17,7 @@ import es.iessaladillo.pedrojoya.pr06.utils.random
 private const val STATE_PHOTO_URL = "STATE_PHOTO_URL"
 
 class AddUserViewModel(
+        private val application: Application,
         private val repository: DataSource,
         savedStateHandle: SavedStateHandle
 ) : ViewModel() {
@@ -23,10 +25,8 @@ class AddUserViewModel(
 
     private val _photoUrl: MutableLiveData<String> = savedStateHandle.getLiveData(
             STATE_PHOTO_URL, getRandomPhotoUrl())
-
     val photoUrl: LiveData<String>
         get() = _photoUrl
-
 
 
     private val _onSaveUser: MutableLiveData<Event<Boolean>> = MutableLiveData()
@@ -49,17 +49,25 @@ class AddUserViewModel(
     }
 
 
-    fun insertUser(user: User) {
-        repository.insertUser(user)
-        _onSaveUser.value = Event(true)
+    fun insertUser(name: String, email: String, phone: String, address: String, web: String, photoUrl: String = _photoUrl.value!!) {
+        if (isValidForm(name, email, phone)) {
+            val user = User(0, name, email, phone, address, web, photoUrl)
+            repository.insertUser(user)
+            _onSaveUser.value = Event(true)
+        } else {
+            showSnackbar(application.getString(R.string.user_invalid_data))
+        }
     }
 
+    private fun isValidForm(name: String, email: String, phone: String): Boolean =
+            isValidName(name) &&
+                    isValidEmail(email) &&
+                    isValidPhoneNumber(phone)
 
-    fun showSnackbar(message:String){
+
+    private fun showSnackbar(message: String) {
         _onShowSnackbar.value = Event(message)
     }
-
-
 
 
 }

@@ -25,7 +25,7 @@ class AddUserActivity : AppCompatActivity() {
         UserActivityBinding.inflate(layoutInflater)
     }
     private val viewModel: AddUserViewModel by viewModels {
-        AddUserViewModelFactory(Database, this)
+        AddUserViewModelFactory(application, Database, this)
     }
 
 
@@ -82,33 +82,22 @@ class AddUserActivity : AppCompatActivity() {
     private fun observeEvents() {
         viewModel.onSaveUser.observeEvent(this) { if (it) finish() }
         viewModel.onShowSnackbar.observeEvent(this) {
+            binding.userEdtWeb.hideSoftKeyboard()
             Snackbar.make(binding.clRoot, it, Snackbar.LENGTH_LONG).show()
         }
     }
 
 
     private fun onSave() {
-        if (isValidForm()) {
-            binding.run {
-                val name = userEdtName.text.toString()
-                val email = userEdtEmail.text.toString()
-                val phone = userEdtPhoneNumber.text.toString()
-                val address = userEdtAddress.text.toString()
-                val web = userEdtWeb.text.toString()
-                val user = User(0, name, email, phone, address, web, viewModel.photoUrl.value!!)
-                viewModel.insertUser(user)
-            }
-        } else {
-            viewModel.showSnackbar(getString(R.string.user_invalid_data))
-            binding.userEdtWeb.hideSoftKeyboard()
+        binding.run {
+            val name = userEdtName.text.toString()
+            val email = userEdtEmail.text.toString()
+            val phone = userEdtPhoneNumber.text.toString()
+            val address = userEdtAddress.text.toString()
+            val web = userEdtWeb.text.toString()
+            viewModel.insertUser(name, email, phone, address, web)
         }
     }
-
-
-    private fun isValidForm(): Boolean =
-            isValidName(binding.userEdtName.text) &&
-                    isValidEmail(binding.userEdtEmail.text) &&
-                    isValidPhoneNumber(binding.userEdtPhoneNumber.text)
 
 
     private fun changePhoto() = viewModel.changePhoto()

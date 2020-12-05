@@ -23,7 +23,7 @@ class EditUserActivity : AppCompatActivity() {
     }
 
     private val viewModel: EditUserViewModel by viewModels {
-        EditUserViewModelFactory(Database, this)
+        EditUserViewModelFactory(application, Database, this)
     }
 
     private val currentUser: User by lazy {
@@ -103,22 +103,13 @@ class EditUserActivity : AppCompatActivity() {
 
 
     private fun onSave() {
-        if (isValidForm()) {
-            binding.run {
-                val name = userEdtName.text.toString()
-                val email = userEdtEmail.text.toString()
-                val phone = userEdtPhoneNumber.text.toString()
-                val address = userEdtAddress.text.toString()
-                val web = userEdtWeb.text.toString()
-
-                val user = currentUser.copy(name = name, email = email, phoneNumber = phone, address = address, web = web,
-                        photoUrl = viewModel.photoUrl.value!!)
-                viewModel.updateUser(user)
-            }
-
-        } else {
-            viewModel.showSnackbar(getString(R.string.user_invalid_data))
-            binding.userEdtWeb.hideSoftKeyboard()
+        binding.run {
+            val name = userEdtName.text.toString()
+            val email = userEdtEmail.text.toString()
+            val phone = userEdtPhoneNumber.text.toString()
+            val address = userEdtAddress.text.toString()
+            val web = userEdtWeb.text.toString()
+            viewModel.updateUser(name, email, phone, address, web)
         }
     }
 
@@ -129,15 +120,10 @@ class EditUserActivity : AppCompatActivity() {
         }
 
         viewModel.onShowSnackbar.observeEvent(this) { message ->
+            binding.userEdtWeb.hideSoftKeyboard()
             Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
         }
     }
-
-
-    private fun isValidForm(): Boolean =
-            isValidName(binding.userEdtName.text) &&
-                    isValidEmail(binding.userEdtEmail.text) &&
-                    isValidPhoneNumber(binding.userEdtPhoneNumber.text)
 
 
     companion object {
