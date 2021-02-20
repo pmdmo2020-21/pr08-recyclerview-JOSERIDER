@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -21,6 +22,69 @@
              La anchura y altura del ImageView viene dado por
              @dimen/users_item_imgPhoto_width
         -->
+
+        <TextView
+            android:id="@+id/users_item_lblName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            tools:text="@tools:sample/first_names"
+            android:textSize="@dimen/users_item_lblName_textSize"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+           />
+
+        <TextView
+            android:id="@+id/users_item_lblMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_half"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/users_item_lblName"
+            tools:text="shuBaldomerito@BaldoMail.com" />
+
+        <TextView
+            android:id="@+id/users_item_lblPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_half"
+            tools:text="@tools:sample/us_phones"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/users_item_lblMail" />
+
+
+        <ImageView
+            android:id="@+id/users_item_imgUser"
+            android:layout_width="@dimen/users_item_imgPhoto_width"
+            android:layout_height="0dp"
+            android:contentDescription="@string/users_item_imgDescription"
+            app:layout_constraintBottom_toBottomOf="@+id/users_item_lblPhoneNumber"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+
+        <Button
+            android:id="@+id/users_item_btnEdit"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_half"
+            android:text="@string/users_item_btnEdit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/users_item_lblPhoneNumber" />
+
+
+        <Button
+            android:id="@+id/users_item_btnDelete"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_half"
+            android:text="@string/users_item_btnDelete"
+            app:layout_constraintBottom_toBottomOf="@+id/users_item_btnEdit"
+            app:layout_constraintStart_toEndOf="@+id/users_item_btnEdit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

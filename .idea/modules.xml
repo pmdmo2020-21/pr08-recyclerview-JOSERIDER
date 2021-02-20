@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2020_RecyclerView.iml" filepath="$PROJECT_DIR$/.idea/modules/2020_RecyclerView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/2020_RecyclerView.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/2020_RecyclerView.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pr08-recyclerview-JOSERIDER.iml" filepath="$PROJECT_DIR$/.idea/modules/pr08-recyclerview-JOSERIDER.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pr08-recyclerview-JOSERIDER.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pr08-recyclerview-JOSERIDER.app.iml" />
     </modules>
   </component>
 </project>

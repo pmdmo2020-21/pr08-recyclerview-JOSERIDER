@@ -9,5 +9,7 @@
     <dimen name="users_item_cardElevation">4dp</dimen>
 
     <dimen name="user_button_min_width">32dp</dimen>
+    <dimen name="user_imgHeader_size">250dp</dimen>
+    <dimen name="user_imgWidth_size">180dp</dimen>
 
 </resources>
